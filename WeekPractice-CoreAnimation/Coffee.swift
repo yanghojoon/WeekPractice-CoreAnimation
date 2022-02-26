@@ -11,6 +11,7 @@ final class Coffee: UIView {
     let tapGestureRecognizer = UITapGestureRecognizer()
     private let cupLayer = CAShapeLayer()
     private let coffeeLayer = CAShapeLayer()
+    private let strawLayer = CAShapeLayer()
     private let leftCoffeeLayer = CAShapeLayer()
     private var isFilled: Bool = true
     
@@ -54,15 +55,14 @@ final class Coffee: UIView {
         path.addLine(to: CGPoint(x: frame.width * 0.75, y: frame.height * 0.2))
         path.addLine(to: CGPoint(x: frame.width * 0.3, y: frame.height * 0.7))
         
-        let layer = CAShapeLayer()
-        layer.frame = bounds
-        layer.path = path.cgPath
-        layer.strokeColor = UIColor.black.cgColor
-        layer.fillColor = UIColor.clear.cgColor
-        layer.lineWidth = 15
-        layer.lineCap = .round
+        strawLayer.frame = bounds
+        strawLayer.path = path.cgPath
+        strawLayer.strokeColor = UIColor.black.cgColor
+        strawLayer.fillColor = UIColor.clear.cgColor
+        strawLayer.lineWidth = 15
+        strawLayer.lineCap = .round
         
-        self.layer.addSublayer(layer)
+        layer.addSublayer(strawLayer)
     }
     
     private func drawCoffee() {
@@ -102,23 +102,32 @@ final class Coffee: UIView {
 extension Coffee: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive event: UIEvent) -> Bool {
         print("터치됐다")
-        let animation = CABasicAnimation(keyPath: "position.y")
+        let positionYAnimation = CABasicAnimation(keyPath: "position.y")
+//        strawLayer.transform = CATransform3DMakeRotation(0, 0, 0, 1.0)
 
         if isFilled {
-            animation.fromValue = frame.height * 0.5
-            animation.toValue = frame.height
-            animation.duration = 3.0
+            positionYAnimation.fromValue = frame.height * 0.5
+            positionYAnimation.toValue = frame.height
+            positionYAnimation.duration = 1.0
+            UIView.animate(withDuration: 500.0) {
+                self.strawLayer.transform = CATransform3DMakeRotation(-.pi/24, 0, 0, 1.0)
+            }
+//            strawLayer.transform = CATransform3DMakeRotation(-.pi/24, 0, 0, 1.0)
             isFilled = false
         } else {
-            animation.fromValue = frame.height
-            animation.toValue = frame.height * 0.5
-            animation.duration = 3.0
+            positionYAnimation.fromValue = frame.height
+            positionYAnimation.toValue = frame.height * 0.5
+            positionYAnimation.duration = 1.0
+            UIView.animate(withDuration: 5.0) {
+                self.strawLayer.transform = CATransform3DMakeRotation(0, 0, 0, 1.0)
+            }
+//            strawLayer.transform = CATransform3DMakeRotation(0, 0, 0, 1.0)
             isFilled = true
         }
         
-        animation.fillMode = .forwards
-        animation.isRemovedOnCompletion = false
-        leftCoffeeLayer.add(animation, forKey: nil)
+        positionYAnimation.fillMode = .forwards
+        positionYAnimation.isRemovedOnCompletion = false
+        leftCoffeeLayer.add(positionYAnimation, forKey: nil)
         
         return true
     }
