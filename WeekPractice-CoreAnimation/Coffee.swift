@@ -8,9 +8,11 @@
 import UIKit
 
 final class Coffee: UIView {
+    let tapGestureRecognizer = UITapGestureRecognizer()
     private let cupLayer = CAShapeLayer()
     private let coffeeLayer = CAShapeLayer()
     private let leftCoffeeLayer = CAShapeLayer()
+    private var isFilled: Bool = true
     
     private func makeCoffeeCupPath() -> UIBezierPath {
         let path = UIBezierPath()
@@ -85,6 +87,8 @@ final class Coffee: UIView {
     
     override func layoutMarginsDidChange() { // bounds가 변하는 것을 감지. Rect가 갱신될 때마다 호출.
         backgroundColor = .systemBackground
+        tapGestureRecognizer.delegate = self
+        addGestureRecognizer(tapGestureRecognizer)
         
         drawStraw()
         drawLeftCoffee()
@@ -95,3 +99,27 @@ final class Coffee: UIView {
 
 // shift + cmd + a -> 다크모드
 // mask로 보이고 싶은 부분을 정의한다.
+extension Coffee: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive event: UIEvent) -> Bool {
+        print("터치됐다")
+        let animation = CABasicAnimation(keyPath: "position.y")
+
+        if isFilled {
+            animation.fromValue = frame.height * 0.5
+            animation.toValue = frame.height
+            animation.duration = 3.0
+            isFilled = false
+        } else {
+            animation.fromValue = frame.height
+            animation.toValue = frame.height * 0.5
+            animation.duration = 3.0
+            isFilled = true
+        }
+        
+        animation.fillMode = .forwards
+        animation.isRemovedOnCompletion = false
+        leftCoffeeLayer.add(animation, forKey: nil)
+        
+        return true
+    }
+}
