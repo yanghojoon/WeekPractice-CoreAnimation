@@ -13,6 +13,7 @@
 		DE990E8027CA325A00CB2D08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE990E7E27CA325A00CB2D08 /* Main.storyboard */; };
 		DE990E8227CA325B00CB2D08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE990E8127CA325B00CB2D08 /* Assets.xcassets */; };
 		DE990E8527CA325B00CB2D08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE990E8327CA325B00CB2D08 /* LaunchScreen.storyboard */; };
+		DE990E8D27CA330600CB2D08 /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE990E8C27CA330600CB2D08 /* Coffee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		DE990E8127CA325B00CB2D08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE990E8427CA325B00CB2D08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE990E8627CA325B00CB2D08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE990E8C27CA330600CB2D08 /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				DE990E7827CA325A00CB2D08 /* AppDelegate.swift */,
 				DE990E7A27CA325A00CB2D08 /* SceneDelegate.swift */,
 				DE990E7C27CA325A00CB2D08 /* ViewController.swift */,
+				DE990E8C27CA330600CB2D08 /* Coffee.swift */,
 				DE990E7E27CA325A00CB2D08 /* Main.storyboard */,
 				DE990E8127CA325B00CB2D08 /* Assets.xcassets */,
 				DE990E8327CA325B00CB2D08 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				DE990E7D27CA325A00CB2D08 /* ViewController.swift in Sources */,
 				DE990E7927CA325A00CB2D08 /* AppDelegate.swift in Sources */,
 				DE990E7B27CA325A00CB2D08 /* SceneDelegate.swift in Sources */,
+				DE990E8D27CA330600CB2D08 /* Coffee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

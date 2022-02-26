@@ -8,12 +8,25 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+//    @IBOutlet weak var coffeeView: Coffee!
+    let coffeeView = Coffee()
+    
+    override func loadView() {
+        view = coffeeView
     }
 
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        coffeeView.backgroundColor = .systemGray6
+//    }
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        coffeeView.drawCup()
+//    }
+    
 
+    // Rect가 결정되는 시점은 보통 ViewWillAppear에서 됨.
+    // 연산이 끝난 시점이 ViewDidAppear
 }
 
